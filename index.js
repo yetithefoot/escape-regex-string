@@ -25,10 +25,8 @@ function escapeRegexString(unescapedString, escapeCharsRegex) {
   if (Object.prototype.toString.call(unescapedString) !== '[object String]') {
     throw new TypeError('Argument 1 should be a string.');
   }
-  if (escapeCharsRegex === undefined) {
+  if (escapeCharsRegex === undefined || !(escapeCharsRegex instanceof RegExp)) {
     escapeCharsRegex = defaultEscapeCharsRegex;
-  } else if (Object.prototype.toString.call(escapeCharsRegex) !== '[object RegExp]') {
-    throw new TypeError('Argument 2 should be a RegExp object.');
   }
 
   // Escape the string.
