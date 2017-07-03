@@ -9,6 +9,7 @@
 'use strict';
 
 var defaultEscapeCharsRegex =  /[\-|\\{}()\[\]\^$+*?.]/g;
+var elasticsearchEscapeCharsRegex =  /([\!\*\+\-\=\<\>\&\|\(\)\[\]\{\}\^\~\?\:\\/\"])/g;
 
 /**
  * Escapes a string literal for use as an argument in the standard RegExp constructor.
@@ -51,6 +52,27 @@ Object.defineProperty(
     configurable: false,
     enumerable: true,
     value: defaultEscapeCharsRegex,
+    writable: false
+  }
+);
+
+/**
+ * @name escapeRegexString.defaultEscapeCharsRegex
+ * A read-only property that contains the Elastic Search specific escape character RegExp instance.
+ * The value of this property is the value used when the optional second argument
+ * is omitted in a call to {@link module:escape-regex-string}. JSDoc fails to
+ * parse this properly due to the use of Object.defineProperty.
+ * @readonly
+ * @static
+ * @type {RegExp}
+ */
+Object.defineProperty(
+  escapeRegexString,
+  'elasticsearchEscapeCharsRegex',
+  {
+    configurable: false,
+    enumerable: true,
+    value: elasticsearchEscapeCharsRegex,
     writable: false
   }
 );
